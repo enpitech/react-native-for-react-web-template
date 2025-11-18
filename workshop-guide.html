@@ -396,7 +396,7 @@
             <div class="progress-bar-container">
                 <div class="progress-bar" id="progressBar"></div>
             </div>
-            <div class="progress-text" id="progressText">0 of 6 steps completed (0%)</div>
+            <div class="progress-text" id="progressText">0 of 5 steps completed (0%)</div>
         </div>
 
         <div class="content">
@@ -714,110 +714,6 @@
                             <strong>✅ Check your work:</strong> Add some items, close and restart the app (shake device → "Reload"). Your items should still be there!
                         </div>
                     </div>
-                </div>
-            </div>
-
-            <!-- Step 6 -->
-            <div class="step" data-step="6">
-                <div class="step-header">
-                    <input type="checkbox" class="step-checkbox">
-                    <div class="step-title">
-                        <div class="step-number">6</div>
-                        <div class="step-name">Get Creative with Styling!</div>
-                    </div>
-                    <svg class="step-toggle" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                        <polyline points="6 9 12 15 18 9"></polyline>
-                    </svg>
-                </div>
-                <div class="step-content">
-                    <div class="step-body">
-                        <div class="step-goal">
-                            <strong>🎯 Goal:</strong> Make your app beautiful and unique! Time to be creative with styling.
-                        </div>
-
-                        <h3>🎨 Your Creative Challenge:</h3>
-                        <p style="margin-bottom: 15px;">Now that your app works, make it yours! Pick any (or all!) of these ideas and experiment with React Native styling:</p>
-
-                        <div class="challenge">
-                            <div class="challenge-title">💡 Styling Ideas to Try</div>
-                            <p><strong>Start with something simple:</strong></p>
-                            <ul style="margin-left: 20px; margin-top: 8px;">
-                                <li><strong>Format dates nicely:</strong> In <code>bucket-list-item.tsx</code>, implement <code>formatDate</code> to show "Jan 15, 2024" instead of ISO strings</li>
-                                <li><strong>Add shadows to items:</strong> Try <code>shadowColor</code>, <code>shadowOffset</code>, <code>shadowOpacity</code>, <code>shadowRadius</code> (iOS) and <code>elevation</code> (Android)</li>
-                                <li><strong>Card-style items:</strong> Increase border radius, add margin between items, experiment with background colors</li>
-                            </ul>
-                            <p style="margin-top: 12px;"><strong>Get more creative:</strong></p>
-                            <ul style="margin-left: 20px; margin-top: 8px;">
-                                <li><strong>Gradient background:</strong> Use <code>LinearGradient</code> from <code>expo-linear-gradient</code> (already installed!)</li>
-                                <li><strong>Custom colors:</strong> Change the theme colors in <code>constants/theme.ts</code></li>
-                                <li><strong>Animated checkboxes:</strong> Explore React Native's <code>Animated</code> API</li>
-                                <li><strong>Custom fonts:</strong> Try different <code>fontWeight</code>, <code>fontStyle</code>, or load custom fonts</li>
-                                <li><strong>Icon variations:</strong> Use different SF Symbols/Material Icons from <code>IconSymbol</code></li>
-                            </ul>
-                            <p style="margin-top: 12px; font-size: 0.9em; opacity: 0.8;">💡 No right or wrong answers - experiment and see what looks good!</p>
-                        </div>
-
-                        <div class="key-learning">
-                            <div class="key-learning-title">💡 Key Learning</div>
-                            <ul style="margin-left: 20px;">
-                                <li>React Native styling is similar to CSS-in-JS but with platform-specific properties</li>
-                                <li><code>StyleSheet.create()</code> helps with performance and validation</li>
-                                <li>Shadows work differently on iOS (shadowColor, etc.) vs Android (elevation)</li>
-                                <li>You can mix and match styles with arrays: <code>style={[styles.base, styles.extra]}</code></li>
-                                <li>Styling in React Native is just JavaScript - same as web!</li>
-                            </ul>
-                        </div>
-
-                        <div class="checkpoint">
-                            <strong>✅ Check your work:</strong> Your app should look unique and polished! Share it with your neighbor and see what they created.
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Bonus Section -->
-            <div class="bonus-section">
-                <h2>🚀 Advanced Features (For Quick Learners)</h2>
-                <p style="margin-bottom: 15px;">If you finish early, try these challenges:</p>
-
-                <div class="bonus-item">
-                    <h3>🔹 Create a "Completed" Tab</h3>
-                    <p><strong>Challenge:</strong> Add a second tab to show only completed items</p>
-                    <p style="margin-top: 8px;"><strong>What you'll learn:</strong> Tab navigation, filtering data for different views, component reusability</p>
-                    <p style="margin-top: 8px;"><strong>Hints:</strong></p>
-                    <ul style="margin-left: 20px; margin-top: 8px;">
-                        <li>In <code>app/(tabs)/_layout.tsx</code>, add another <code>&lt;Tabs.Screen&gt;</code> with <code>name="explore"</code></li>
-                        <li>Create <code>app/(tabs)/explore.tsx</code> by copying <code>index.tsx</code></li>
-                        <li>Use the same <code>useBucketStorage()</code> hook (shared state!)</li>
-                        <li>Filter with <code>items.filter(item => item.completed)</code> instead</li>
-                        <li>In <code>index.tsx</code>, filter with <code>items.filter(item => !item.completed)</code></li>
-                        <li>Both tabs will now share the same data but show different filtered views!</li>
-                    </ul>
-                    <p style="margin-top: 8px; font-size: 0.9em; opacity: 0.8;">💡 This is the same pattern as in React web - same data, different filters!</p>
-                </div>
-
-                <div class="bonus-item">
-                    <h3>🔹 Edit Existing Items</h3>
-                    <p><strong>Challenge:</strong> Allow users to edit title/description of existing items</p>
-                    <p style="margin-top: 8px;"><strong>Hints:</strong> Add an "edit" button to BucketListItem, reuse AddItemModal but pre-fill with existing data, implement the <code>updateItem</code> function</p>
-                </div>
-
-                <div class="bonus-item">
-                    <h3>🔹 Custom Completion Date</h3>
-                    <p><strong>Challenge:</strong> Let users set a specific date when they completed something</p>
-                    <p style="margin-top: 8px;"><strong>Hints:</strong> Look into <code>expo-date-picker</code> or use a TextInput for date, modify <code>toggleComplete</code> to accept an optional date parameter</p>
-                </div>
-
-                <div class="bonus-item">
-                    <h3>🔹 Add Photos to Items</h3>
-                    <p><strong>Challenge:</strong> Let users add preview images to bucket list items</p>
-                    <p style="margin-top: 8px;"><strong>Hints:</strong> Use <code>expo-image-picker</code> (already installed!), store the image URI in the <code>imageUri</code> field, use <code>&lt;Image&gt;</code> component to display</p>
-                </div>
-
-                <div class="bonus-item">
-                    <h3>🔹 Add Notes/Comments</h3>
-                    <p><strong>Challenge:</strong> Allow adding notes to items</p>
-                    <p style="margin-top: 8px;"><strong>Hints:</strong> Add a <code>notes</code> field (already in TypeScript interface!), add another TextInput to the modal, display notes in item details</p>
                 </div>
             </div>
 

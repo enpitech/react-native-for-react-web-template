@@ -72,25 +72,15 @@ export function BucketListItem({
   };
 
   /**
-   * 📚 STEP 6: Format the completion date nicely
-   *
-   * 🎯 CHALLENGE: Can you format the date to show "Jan 15, 2024"?
-   * Hint: Use JavaScript's Date object, same as in React web!
+   * Format the completion date nicely
    */
   const formatDate = (isoString: string) => {
-    // TODO: Format the date nicely
-    // Uncomment the code below if you get stuck:
-
-    /*
     const date = new Date(isoString);
     return date.toLocaleDateString('en-US', {
       month: 'short',
       day: 'numeric',
       year: 'numeric',
     });
-    */
-
-    return isoString; // Temporary return
   };
 
   return (
