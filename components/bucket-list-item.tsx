@@ -34,16 +34,32 @@ export function BucketListItem({
 }: BucketListItemProps) {
 
   /**
-   * 📚 STEP 2: Handle delete with confirmation
+   * 📚 STEP 3: Handle delete with confirmation
+   *
+   * 🎯 TRY IT YOURSELF FIRST! Implement a confirmation dialog:
+   *
+   * What you need to know:
+   * 1. Use Alert.alert() - React Native's version of window.confirm()
+   * 2. Alert.alert() takes 3 parameters:
+   *    - Title: 'Delete Item'
+   *    - Message: 'Are you sure you want to delete this item?'
+   *    - Buttons array: [cancelButton, deleteButton]
+   * 3. Each button has: text, style (optional), and onPress (optional)
+   * 4. Call onDelete(item.id) when user confirms
    *
    * 🌐 React Web Comparison:
    * - Alert.alert() is like window.confirm() in web
    * - But it's more powerful with customizable buttons!
+   *
+   * ⚠️ Only uncomment the solution below if you get stuck!
    */
   const handleDelete = () => {
     // TODO: Show confirmation dialog before deleting
+    // Try implementing Alert.alert() yourself first!
+    // Hint: Alert.alert(title, message, [buttons])
+    //
     // Uncomment the code below if you get stuck:
-
+    /*
     Alert.alert(
       'Delete Item',
       'Are you sure you want to delete this item?',
@@ -52,6 +68,7 @@ export function BucketListItem({
         { text: 'Delete', style: 'destructive', onPress: () => onDelete(item.id) },
       ]
     );
+    */
   };
 
   /**
@@ -167,7 +184,7 @@ export function BucketListItem({
         )}
       </View>
 
-      {/* 📚 STEP 2: Delete button */}
+      {/* 📚 STEP 3: Delete button */}
       <Pressable onPress={handleDelete} style={styles.deleteButton}>
         <IconSymbol name="trash" size={20} color={Colors.icon} />
       </Pressable>

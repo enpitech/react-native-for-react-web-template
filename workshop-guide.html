@@ -559,20 +559,28 @@
                         <h3>What to do:</h3>
                         <div class="todo-list">
                             <div class="todo-item">In <code>app/(tabs)/index.tsx</code>, find <code>📚 STEP 3: Add delete functionality</code></div>
-                            <div class="todo-item">Look for the commented <code>deleteItem</code> function</div>
-                            <div class="todo-item"><strong>🎯 Try implementing <code>deleteItem</code> yourself!</strong> Hint: use <code>.filter()</code></div>
-                            <div class="todo-item">Replace the placeholder <code>deleteItem</code> with your implementation</div>
-                            <div class="todo-item">If stuck, uncomment the solution (it's just one line!)</div>
+                            <div class="todo-item"><strong>🎯 Challenge 1: Implement <code>deleteItem</code>!</strong> Use <code>.filter()</code> to remove items by id</div>
+                            <div class="todo-item">Hint: <code>setItems(items.filter(item => item.id !== id))</code></div>
                             <div class="todo-item">In <code>components/bucket-list-item.tsx</code>, find <code>📚 STEP 3</code></div>
-                            <div class="todo-item">Uncomment the <code>handleDelete</code> function</div>
+                            <div class="todo-item"><strong>🎯 Challenge 2: Implement <code>Alert.alert()</code>!</strong> Add a confirmation dialog before deleting</div>
+                            <div class="todo-item">Alert.alert takes 3 params: title, message, and buttons array</div>
+                            <div class="todo-item">Try implementing both yourself - uncomment solutions only if stuck!</div>
+                            <div class="todo-item">Test it! Tap the trash icon, confirm deletion, and watch the item disappear</div>
                         </div>
 
                         <div class="challenge">
-                            <div class="challenge-title">🎯 Challenge - Try it yourself!</div>
-                            <p><strong>deleteItem implementation:</strong></p>
-                            <p style="margin-top: 8px;">How do you remove an item from an array in React? Use <code>.filter()</code> to keep only items that don't match the id!</p>
-                            <p style="margin-top: 8px;"><code>const deleteItem = (id: string) => setItems(items.filter(item => item.id !== id));</code></p>
-                            <p style="margin-top: 8px; font-size: 0.9em; opacity: 0.8;">This is EXACTLY the same as React web!</p>
+                            <div class="challenge-title">🎯 What you'll implement</div>
+                            <p><strong>Try both challenges yourself first!</strong></p>
+                            <p style="margin-top: 12px;"><strong>Challenge 1 - deleteItem in index.tsx:</strong></p>
+                            <p style="margin-left: 20px; margin-top: 4px;">Use <code>.filter()</code> to keep only items that don't match the id:</p>
+                            <p style="margin-left: 20px;"><code>const deleteItem = (id: string) => setItems(items.filter(item => item.id !== id));</code></p>
+                            <p style="margin-top: 12px;"><strong>Challenge 2 - Alert.alert in bucket-list-item.tsx:</strong></p>
+                            <ul style="margin-left: 20px; margin-top: 4px;">
+                                <li>Alert.alert('Delete Item', 'Are you sure...?', [buttons])</li>
+                                <li>First button: <code>{ text: 'Cancel', style: 'cancel' }</code></li>
+                                <li>Second button: <code>{ text: 'Delete', style: 'destructive', onPress: () => onDelete(item.id) }</code></li>
+                            </ul>
+                            <p style="margin-top: 12px; font-size: 0.9em; opacity: 0.8;">💡 Both patterns work exactly like React web!</p>
                         </div>
 
                         <div class="key-learning">
@@ -678,7 +686,7 @@
 
                         <h3>What to do:</h3>
                         <div class="todo-list">
-                            <div class="todo-item">Open <code>hooks/use-bucket-storage.ts</code>, find <code>📚 STEP 6</code> (we're skipping to storage now!)</div>
+                            <div class="todo-item">Open <code>hooks/use-bucket-storage.ts</code>, find <code>📚 STEP 5</code></div>
                             <div class="todo-item">Uncomment the <code>useEffect</code> that calls <code>loadItems()</code></div>
                             <div class="todo-item">Uncomment the <code>loadItems</code> function implementation</div>
                             <div class="todo-item">Uncomment the <code>saveItems</code> function implementation</div>

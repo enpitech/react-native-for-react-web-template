@@ -24,7 +24,7 @@ export function useBucketStorage() {
   const [items, setItems] = useState<BucketItem[]>([]);
   const [isLoading, setIsLoading] = useState(true);
 
-  // 📚 STEP 6: Load items from storage when the app starts
+  // 📚 STEP 5: Load items from storage when the app starts
   // This uses useEffect, just like in React web!
   useEffect(() => {
     loadItems();
@@ -78,7 +78,7 @@ export function useBucketStorage() {
   };
 
   /**
-   * 📚 STEP 2: Add a new bucket list item
+   * 📚 STEP 5: Add a new bucket list item
    *
    * 🎯 CHALLENGE: Implement this function!
    * Think about:
@@ -106,7 +106,7 @@ export function useBucketStorage() {
   };
 
   /**
-   * 📚 STEP 3: Delete an item from the bucket list
+   * 📚 STEP 5: Delete an item from the bucket list
    *
    * 🎯 CHALLENGE: How would you filter out an item by ID?
    * This is exactly the same as in React web!
