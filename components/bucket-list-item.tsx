@@ -79,11 +79,32 @@ export function BucketListItem({
   return (
     <ThemedView style={styles.container}>
       {/*
-        📚 STEP 4: Checkbox/Toggle Button
+        📚 STEP 4 - CHALLENGE 1: Build a Custom Checkbox!
 
-        🌐 React Web: In web you might use <input type="checkbox">
-        🎯 React Native: We use Pressable with custom styling!
+        🎯 TRY IT YOURSELF FIRST! Build the checkbox UI from scratch:
+
+        What you need to know:
+        1. Use <Pressable> component (React Native's button/onClick)
+           - Set onPress to call: onToggleComplete(item.id)
+           - Use style prop with an array: style={[styles.checkbox, ...]}
+
+        2. Add conditional styling:
+           - When item.completed is true, add: { backgroundColor: Colors.tint }
+           - Hint: item.completed && { backgroundColor: Colors.tint }
+
+        3. Show a checkmark icon when completed:
+           - Use conditional rendering: {item.completed && <IconSymbol ... />}
+           - IconSymbol props: name="checkmark", size={18}, color="white"
+
+        🌐 React Web Comparison:
+        - Pressable = <button> or onClick handler
+        - Conditional styling is the same: [baseStyle, condition && extraStyle]
+
+        💡 HINT: Look at the styles.checkbox below for the base styling!
+
+        ⚠️ Only uncomment the solution below if you get stuck!
       */}
+      {/*
       <Pressable
         onPress={() => onToggleComplete(item.id)}
         style={[
@@ -95,13 +116,32 @@ export function BucketListItem({
           <IconSymbol name="checkmark" size={18} color="white" />
         )}
       </Pressable>
+      */}
 
       {/* Item content */}
       <View style={styles.content}>
+        {/*
+          📚 STEP 4 - CHALLENGE 2: Add Strikethrough Styling!
+
+          🎯 TRY IT YOURSELF FIRST! Add strikethrough to completed items:
+
+          What you need to do:
+          1. The style is already an array: style={[styles.title, ...]}
+          2. Add a conditional style at the end: item.completed && styles.completedText
+          3. Do the same for the description text below!
+
+          The styles.completedText style includes:
+          - textDecorationLine: 'line-through' (CSS: text-decoration: line-through)
+          - opacity: 0.5 (make it look faded)
+
+          💡 This is EXACTLY the same pattern as React web!
+
+          ⚠️ Only uncomment the solutions below if you get stuck!
+        */}
         <ThemedText
           style={[
             styles.title,
-            item.completed && styles.completedText,
+            // item.completed && styles.completedText,
           ]}
         >
           {item.title}
@@ -112,7 +152,7 @@ export function BucketListItem({
           <ThemedText
             style={[
               styles.description,
-              item.completed && styles.completedText,
+              // item.completed && styles.completedText,
             ]}
           >
             {item.description}

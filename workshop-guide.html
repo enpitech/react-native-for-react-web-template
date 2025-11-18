@@ -228,16 +228,19 @@
             margin: 8px 0;
             background: #f8f9fa;
             border-radius: 6px;
-            display: flex;
-            align-items: flex-start;
-            gap: 10px;
+            display: block;
+            line-height: 1.6;
+            padding-left: 30px;
+            position: relative;
         }
 
         .todo-item::before {
             content: "→";
             color: #667eea;
             font-weight: bold;
-            flex-shrink: 0;
+            position: absolute;
+            left: 10px;
+            top: 10px;
         }
 
         .challenge {
@@ -294,6 +297,8 @@
             font-family: 'Courier New', monospace;
             font-size: 0.9em;
             color: #d63384;
+            display: inline;
+            white-space: nowrap;
         }
 
         pre {
@@ -591,7 +596,7 @@
                     <input type="checkbox" class="step-checkbox">
                     <div class="step-title">
                         <div class="step-number">4</div>
-                        <div class="step-name">Mark Items as Done/Undone</div>
+                        <div class="step-name">Style the Checkbox & Strikethrough</div>
                     </div>
                     <svg class="step-toggle" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                         <polyline points="6 9 12 15 18 9"></polyline>
@@ -600,44 +605,54 @@
                 <div class="step-content">
                     <div class="step-body">
                         <div class="step-goal">
-                            <strong>🎯 Goal:</strong> Toggle completion status with visual feedback
+                            <strong>🎯 Goal:</strong> Build a custom checkbox UI and add strikethrough styling for completed items
                         </div>
 
                         <h3>What to do:</h3>
                         <div class="todo-list">
-                            <div class="todo-item">In <code>app/(tabs)/index.tsx</code>, look for the placeholder <code>toggleComplete</code> function</div>
-                            <div class="todo-item"><strong>🎯 Try implementing <code>toggleComplete</code> yourself!</strong> Use <code>.map()</code> to update the item</div>
-                            <div class="todo-item">When complete: set <code>completed: true</code> and <code>completedAt: new Date().toISOString()</code></div>
-                            <div class="todo-item">When incomplete: set <code>completed: false</code> and <code>completedAt: undefined</code></div>
-                            <div class="todo-item">Replace the placeholder function with your implementation</div>
-                            <div class="todo-item">If stuck, look at the solution in the commented STEP 2 section</div>
+                            <div class="todo-item">Good news! In <code>app/(tabs)/index.tsx</code>, the <code>toggleComplete</code> function is already implemented - state management is done! ✅</div>
+                            <div class="todo-item">Open <code>components/bucket-list-item.tsx</code> and find <code>📚 STEP 4</code></div>
+                            <div class="todo-item"><strong>🎯 Challenge 1: Build the checkbox from scratch!</strong> Write code to create a custom checkbox using <code>Pressable</code>, conditional styling, and <code>IconSymbol</code></div>
+                            <div class="todo-item">Read the detailed instructions in the comments - they tell you exactly what components and props to use</div>
+                            <div class="todo-item"><strong>🎯 Challenge 2: Add strikethrough styling!</strong> Add the conditional <code>completedText</code> style to the title and description</div>
+                            <div class="todo-item">If you get stuck, you can uncomment the solution code - but try it yourself first!</div>
+                            <div class="todo-item">Test it! Tap an item's checkbox - it should toggle between checked/unchecked with strikethrough text</div>
                         </div>
 
                         <div class="challenge">
-                            <div class="challenge-title">🎯 Challenge - Try it yourself!</div>
-                            <p><strong>toggleComplete implementation:</strong></p>
+                            <div class="challenge-title">🎯 What you'll build</div>
+                            <p><strong>Try implementing it yourself first! Here's what you need:</strong></p>
                             <ul style="margin-left: 20px; margin-top: 8px;">
-                                <li>Use <code>.map()</code> to loop through items (same as React web!)</li>
-                                <li>Find the item with matching id</li>
-                                <li>Toggle the <code>completed</code> field</li>
-                                <li>Set <code>completedAt</code> based on completion status</li>
-                                <li>Return the updated item for matched id, original item for others</li>
+                                <li><strong>Challenge 1 - Custom checkbox:</strong>
+                                    <ul style="margin-left: 20px; margin-top: 4px;">
+                                        <li>Use <code>&lt;Pressable&gt;</code> component with <code>onPress={() => onToggleComplete(item.id)}</code></li>
+                                        <li>Style it with: <code>style={[styles.checkbox, item.completed && { backgroundColor: Colors.tint }]}</code></li>
+                                        <li>Inside Pressable, conditionally render: <code>{item.completed && &lt;IconSymbol name="checkmark" size={18} color="white" /&gt;}</code></li>
+                                    </ul>
+                                </li>
+                                <li><strong>Challenge 2 - Strikethrough:</strong>
+                                    <ul style="margin-left: 20px; margin-top: 4px;">
+                                        <li>On the title and description, add to the style array: <code>item.completed && styles.completedText</code></li>
+                                        <li>That's it! The <code>completedText</code> style is already defined with <code>textDecorationLine: 'line-through'</code></li>
+                                    </ul>
+                                </li>
                             </ul>
-                            <p style="margin-top: 8px; font-size: 0.9em; opacity: 0.8;">This pattern is identical to React web!</p>
+                            <p style="margin-top: 12px; font-size: 0.9em; opacity: 0.8;">💡 All the detailed hints are in the code comments. Try building it yourself - you already know these patterns from React web!</p>
                         </div>
 
                         <div class="key-learning">
                             <div class="key-learning-title">💡 Key Learning</div>
                             <ul style="margin-left: 20px;">
-                                <li><code>.map()</code> for updating items works exactly like web</li>
-                                <li>ISO date strings are the same across web and mobile</li>
-                                <li>The UI automatically updates with strikethrough and checkmark when completed</li>
-                                <li>Completed items show with a completion date!</li>
+                                <li>React Native doesn't have native checkboxes - we build custom ones with <code>Pressable</code>!</li>
+                                <li>Conditional styling with arrays works exactly like web: <code>[baseStyle, condition && activeStyle]</code></li>
+                                <li><code>textDecorationLine: 'line-through'</code> is the React Native equivalent of CSS text-decoration</li>
+                                <li><code>IconSymbol</code> component lets you use SF Symbols (iOS) and Material Icons (Android)</li>
+                                <li>The UI updates automatically when state changes - same React principles as web!</li>
                             </ul>
                         </div>
 
                         <div class="checkpoint">
-                            <strong>✅ Check your work:</strong> Tap the checkbox on an item - it should show with a checkmark, strikethrough text, and completion date. Tap again to mark as incomplete!
+                            <strong>✅ Check your work:</strong> Tap the checkbox on an item - it should show with a filled background, checkmark icon, and strikethrough text. Tap again to mark as incomplete!
                         </div>
                     </div>
                 </div>

@@ -81,13 +81,20 @@ export default function MyBucketListScreen() {
   // const deleteItem = (id: string) => setItems(items.filter(item => item.id !== id));
 
   // ==========================================
-  // 📚 STEP 4: Add toggle complete functionality
+  // 📚 STEP 3: Add delete functionality
   // ==========================================
-  // 🎯 CHALLENGE: Implement toggling completion status!
-  // Hint: Use .map() to update a specific item - just like React web!
+  // 🎯 CHALLENGE: Implement delete yourself!
+  // Hint: Use .filter() to remove an item by id - same as React web!
   //
-  // Replace the placeholder toggleComplete below with:
-  /*
+  // Replace the placeholder deleteItem below with:
+  // const deleteItem = (id: string) => setItems(items.filter(item => item.id !== id));
+  const deleteItem = (_id: string) => {}; // TODO: Implement in STEP 3
+
+  // ==========================================
+  // 📚 STEP 4: Toggle complete functionality (STATE MANAGEMENT READY!)
+  // ==========================================
+  // ✅ The state management logic is already implemented for you!
+  // Your focus is on building the UI in bucket-list-item.tsx
   const toggleComplete = (id: string) => {
     setItems(items.map(item => {
       if (item.id === id) {
@@ -100,7 +107,6 @@ export default function MyBucketListScreen() {
       return item;
     }));
   };
-  */
 
   // ==========================================
   // 📚 STEP 5: Use AsyncStorage for persistence
@@ -110,10 +116,8 @@ export default function MyBucketListScreen() {
   const { items, isLoading, addItem, deleteItem, toggleComplete } = useBucketStorage();
   */
 
-  // TEMPORARY: Empty placeholders for later steps - replace these as you complete each step!
+  // TEMPORARY: Empty placeholders for earlier steps
   const isLoading = false;
-  const deleteItem = (_id: string) => {}; // Implement in STEP 3
-  const toggleComplete = (_id: string) => {}; // Implement in STEP 4
 
   /**
    * Filter to show only ACTIVE items (not completed)
