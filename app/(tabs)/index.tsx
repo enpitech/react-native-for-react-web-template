@@ -1,3 +1,4 @@
+import React from 'react';
 import { useState } from 'react';
 import { StyleSheet, FlatList, Pressable, View } from 'react-native';
 import { ThemedText } from '@/components/themed-text';
