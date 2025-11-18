@@ -58,7 +58,7 @@ export default function MyBucketListScreen() {
   // Get current date with: new Date().toISOString()
   //
   // Uncomment the solution below if you get stuck:
-  const addItem = (_title: string, _description?: string) => {
+  const addItem = (title: string, description?: string) => {
     // TODO: Implement adding a new item
     // Think: How do you add to an array in React? (Hint: spread operator [...items, newItem])
     //
@@ -89,7 +89,7 @@ export default function MyBucketListScreen() {
   //
   // Replace the placeholder deleteItem below with:
   // const deleteItem = (id: string) => setItems(items.filter(item => item.id !== id));
-  const deleteItem = (_id: string) => {}; // TODO: Implement in STEP 3
+  const deleteItem = (id: string) => {}; // TODO: Implement in STEP 3
 
   // ==========================================
   // 📚 STEP 4: Toggle complete functionality (STATE MANAGEMENT READY!)

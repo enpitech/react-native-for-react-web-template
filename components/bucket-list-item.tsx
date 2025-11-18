@@ -55,21 +55,7 @@ export function BucketListItem({
    * ⚠️ Only uncomment the solution below if you get stuck!
    */
   const handleDelete = () => {
-    // TODO: Show confirmation dialog before deleting
-    // Try implementing Alert.alert() yourself first!
-    // Hint: Alert.alert(title, message, [buttons])
-    //
-    // Uncomment the code below if you get stuck:
-    /*
-    Alert.alert(
-      'Delete Item',
-      'Are you sure you want to delete this item?',
-      [
-        { text: 'Cancel', style: 'cancel' },
-        { text: 'Delete', style: 'destructive', onPress: () => onDelete(item.id) },
-      ]
-    );
-    */
+    onDelete(item.id);
   };
 
   /**
