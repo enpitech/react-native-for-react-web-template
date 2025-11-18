@@ -10,7 +10,7 @@ import {
 } from 'react-native';
 import { ThemedText } from './themed-text';
 import { ThemedView } from './themed-view';
-import { useThemeColor } from '@/hooks/use-theme-color';
+import { Colors } from '@/constants/theme';
 
 /**
  * Modal for Adding New Bucket List Items
@@ -30,7 +30,7 @@ interface AddItemModalProps {
 
 export function AddItemModal({ visible, onClose, onAdd }: AddItemModalProps) {
   /**
-   * 📚 STEP 2: Local state for form inputs
+   * 📚 STEP 1: Local state for form inputs
    *
    * 🌐 React Web Comparison:
    * This is EXACTLY the same as React web! useState works identically.
@@ -38,10 +38,6 @@ export function AddItemModal({ visible, onClose, onAdd }: AddItemModalProps) {
    */
   const [title, setTitle] = useState('');
   const [description, setDescription] = useState('');
-
-  const backgroundColor = useThemeColor({}, 'background');
-  const tintColor = useThemeColor({}, 'tint');
-  const textColor = useThemeColor({}, 'text');
 
   /**
    * 📚 STEP 2: Handle form submission
@@ -52,16 +48,16 @@ export function AddItemModal({ visible, onClose, onAdd }: AddItemModalProps) {
    * 3. Clear the form
    * 4. Close the modal
    */
-  const handleAdd = () => {
+  const addItem = () => {
     // TODO: Implement the add logic
     // Uncomment the code below if you get stuck:
 
-    // if (title.trim()) {
-    //   onAdd(title.trim(), description.trim() || undefined);
-    //   setTitle('');
-    //   setDescription('');
-    //   onClose();
-    // }
+    if (title.trim()) {
+      onAdd(title.trim(), description.trim() || undefined);
+      setTitle('');
+      setDescription('');
+      onClose();
+    }
   };
 
   /**
@@ -96,7 +92,7 @@ export function AddItemModal({ visible, onClose, onAdd }: AddItemModalProps) {
           </ThemedText>
 
           {/*
-            📚 STEP 2: Text Inputs
+            📚 STEP 1: Text Inputs
 
             🌐 React Web Comparison:
             - TextInput is like <input> in HTML
@@ -105,7 +101,7 @@ export function AddItemModal({ visible, onClose, onAdd }: AddItemModalProps) {
             - placeholder works the same
           */}
           <TextInput
-            style={[styles.input, { backgroundColor: backgroundColor, color: textColor }]}
+            style={[styles.input, { backgroundColor: Colors.background, color: Colors.text }]}
             placeholder="What do you want to do?"
             placeholderTextColor="#999"
             value={title}
@@ -113,12 +109,12 @@ export function AddItemModal({ visible, onClose, onAdd }: AddItemModalProps) {
             autoFocus
           />
 
-          {/* 📚 STEP 4: Description input */}
+          {/* Description input - multiline TextInput */}
           <TextInput
             style={[
               styles.input,
               styles.textArea,
-              { backgroundColor: backgroundColor, color: textColor }
+              { backgroundColor: Colors.background, color: Colors.text }
             ]}
             placeholder="Add a description (optional)"
             placeholderTextColor="#999"
@@ -138,8 +134,8 @@ export function AddItemModal({ visible, onClose, onAdd }: AddItemModalProps) {
             </Pressable>
 
             <Pressable
-              style={[styles.button, { backgroundColor: tintColor }]}
-              onPress={handleAdd}
+              style={[styles.button, { backgroundColor: Colors.tint }]}
+              onPress={addItem}
             >
               <ThemedText style={styles.addButtonText}>Add</ThemedText>
             </Pressable>

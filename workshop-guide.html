@@ -391,7 +391,7 @@
             <div class="progress-bar-container">
                 <div class="progress-bar" id="progressBar"></div>
             </div>
-            <div class="progress-text" id="progressText">0 of 7 steps completed (0%)</div>
+            <div class="progress-text" id="progressText">0 of 6 steps completed (0%)</div>
         </div>
 
         <div class="content">
@@ -416,7 +416,7 @@
                     <input type="checkbox" class="step-checkbox">
                     <div class="step-title">
                         <div class="step-number">1</div>
-                        <div class="step-name">Display a Basic List</div>
+                        <div class="step-name">Add New Items to the List</div>
                     </div>
                     <svg class="step-toggle" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                         <polyline points="6 9 12 15 18 9"></polyline>
@@ -425,20 +425,27 @@
                 <div class="step-content">
                     <div class="step-body">
                         <div class="step-goal">
-                            <strong>🎯 Goal:</strong> Render a simple list of text items
+                            <strong>🎯 Goal:</strong> Add new bucket list items and see them appear in real-time
                         </div>
 
                         <h3>What to do:</h3>
                         <div class="todo-list">
-                            <div class="todo-item">Open <code>app/(tabs)/index.tsx</code></div>
-                            <div class="todo-item">Look for <code>📚 STEP 1: Start with hardcoded data</code></div>
-                            <div class="todo-item">Uncomment the hardcoded <code>items</code> array (3 sample items)</div>
-                            <div class="todo-item">Comment out the "TEMPORARY: Empty placeholder" section below it</div>
+                            <div class="todo-item">Open <code>app/(tabs)/index.tsx</code> - you should already see 3 pre-populated items!</div>
+                            <div class="todo-item">Look for <code>📚 STEP 1: Add new items to the list</code></div>
+                            <div class="todo-item">The <code>items</code> state is already set up with pre-populated items!</div>
+                            <div class="todo-item">Tap the + button to open the modal and see the form</div>
+                            <div class="todo-item">Try adding an item - notice it doesn't work yet!</div>
                         </div>
 
                         <div class="challenge">
-                            <div class="challenge-title">🎯 Challenge</div>
-                            <p>The FlatList is already set up for you! Just uncomment the hardcoded data and you'll see your first list appear.</p>
+                            <div class="challenge-title">🎯 What you'll learn</div>
+                            <p><strong>You already know this from React web!</strong></p>
+                            <ul style="margin-left: 20px; margin-top: 8px;">
+                                <li><code>FlatList</code> vs <code>.map()</code> - both iterate over arrays, but FlatList is optimized for mobile</li>
+                                <li>Components are JSX, just like React web!</li>
+                                <li>Modal component in React Native (built-in!)</li>
+                                <li>State management is EXACTLY the same as React web</li>
+                            </ul>
                         </div>
 
                         <div class="key-learning">
@@ -446,11 +453,14 @@
                             <ul style="margin-left: 20px;">
                                 <li><code>FlatList</code> vs <code>.map()</code> - both iterate over arrays, but FlatList is optimized for mobile</li>
                                 <li>Components are JSX, just like React web!</li>
+                                <li>Modal component in React Native (built-in!)</li>
+                                <li>TextInput is like <code>&lt;input&gt;</code> but uses <code>onChangeText</code> instead of <code>onChange</code></li>
+                                <li>State management is EXACTLY the same as React web</li>
                             </ul>
                         </div>
 
                         <div class="checkpoint">
-                            <strong>✅ Check your work:</strong> You should see a basic list of text items on screen
+                            <strong>✅ Check your work:</strong> You should see 3 pre-populated items and understand the basic app structure!
                         </div>
                     </div>
                 </div>
@@ -462,7 +472,7 @@
                     <input type="checkbox" class="step-checkbox">
                     <div class="step-title">
                         <div class="step-number">2</div>
-                        <div class="step-name">Add New Items</div>
+                        <div class="step-name">Implement Add Item Function</div>
                     </div>
                     <svg class="step-toggle" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                         <polyline points="6 9 12 15 18 9"></polyline>
@@ -471,45 +481,53 @@
                 <div class="step-content">
                     <div class="step-body">
                         <div class="step-goal">
-                            <strong>🎯 Goal:</strong> Allow users to add new bucket list items
+                            <strong>🎯 Goal:</strong> Make the add button work to create new bucket list items
                         </div>
 
                         <h3>What to do:</h3>
                         <div class="todo-list">
-                            <div class="todo-item">Still in <code>app/(tabs)/index.tsx</code>, find <code>📚 STEP 2: Add items with useState</code></div>
-                            <div class="todo-item">Comment out the STEP 1 hardcoded array</div>
-                            <div class="todo-item">Uncomment the STEP 2 section (useState and addItem function)</div>
-                            <div class="todo-item"><strong>🎯 Try implementing <code>addItem</code> yourself!</strong> Read the TODO comments for hints</div>
-                            <div class="todo-item">If stuck, uncomment the solution code inside the function</div>
+                            <div class="todo-item">In <code>app/(tabs)/index.tsx</code>, find <code>📚 STEP 2: Implement the addItem function</code></div>
+                            <div class="todo-item"><strong>🎯 Try implementing <code>addItem</code> yourself!</strong> Create a new item object and add it to the array</div>
+                            <div class="todo-item">Your item needs: <code>id</code>, <code>title</code>, <code>description</code>, <code>completed: false</code>, <code>createdAt</code></div>
+                            <div class="todo-item">Generate id with: <code>Date.now().toString()</code></div>
+                            <div class="todo-item">Get current date with: <code>new Date().toISOString()</code></div>
+                            <div class="todo-item">If stuck, uncomment the solution code</div>
                             <div class="todo-item">In <code>components/add-item-modal.tsx</code>, find <code>📚 STEP 2</code></div>
-                            <div class="todo-item"><strong>🎯 Implement <code>handleAdd</code>:</strong> validate, call onAdd, clear form, close modal</div>
+                            <div class="todo-item"><strong>🎯 Implement <code>addItem</code>:</strong> validate title, call onAdd, clear form, close modal</div>
                             <div class="todo-item">Uncomment the solution if you get stuck</div>
+                            <div class="todo-item">Tap the + button to add your first custom item!</div>
                         </div>
 
                         <div class="challenge">
                             <div class="challenge-title">🎯 Challenge - Try it yourself first!</div>
                             <p><strong>You already know this from React web!</strong></p>
-                            <p style="margin-top: 8px;"><strong>addItem implementation:</strong></p>
+                            <p style="margin-top: 8px;"><strong>addItem in index.tsx:</strong></p>
                             <ul style="margin-left: 20px; margin-top: 8px;">
-                                <li>Create a new item object with: id (use <code>Date.now().toString()</code>), title, description, completed: false, createdAt</li>
-                                <li>Add to array with spread operator: <code>setItems([...items, newItem])</code></li>
+                                <li>Create a new item object with all required fields</li>
+                                <li>Use the spread operator to add it to the array: <code>setItems([...items, newItem])</code></li>
                             </ul>
-                            <p style="margin-top: 8px;"><strong>handleAdd in modal:</strong> Check if title is not empty, call onAdd, clear form, close modal.</p>
-                            <p style="margin-top: 8px; font-size: 0.9em; opacity: 0.8;">💡 Only look at the commented solutions if you're truly stuck!</p>
+                            <p style="margin-top: 8px;"><strong>addItem in modal:</strong></p>
+                            <ul style="margin-left: 20px; margin-top: 8px;">
+                                <li>Check if title is not empty (validation)</li>
+                                <li>Call <code>onAdd(title, description)</code> to add the item</li>
+                                <li>Clear the form fields (<code>setTitle('')</code>, <code>setDescription('')</code>)</li>
+                                <li>Close the modal (<code>onClose()</code>)</li>
+                            </ul>
+                            <p style="margin-top: 8px; font-size: 0.9em; opacity: 0.8;">💡 Only look at the commented solution if you're truly stuck!</p>
                         </div>
 
                         <div class="key-learning">
                             <div class="key-learning-title">💡 Key Learning</div>
                             <ul style="margin-left: 20px;">
+                                <li>State management with arrays is EXACTLY the same as React web</li>
+                                <li>Spread operator (<code>...</code>) works the same way</li>
+                                <li>Form validation patterns are identical to web</li>
                                 <li>Modal component in React Native (built-in!)</li>
-                                <li>TextInput is like <code>&lt;input&gt;</code> but uses <code>onChangeText</code> instead of <code>onChange</code></li>
-                                <li>State management is EXACTLY the same as React web</li>
-                                <li><strong>Note:</strong> Right now we're using local state. In Step 6, we'll add persistence with AsyncStorage!</li>
                             </ul>
                         </div>
 
                         <div class="checkpoint">
-                            <strong>✅ Check your work:</strong> Tap the + button, add an item, it should appear in the list!
+                            <strong>✅ Check your work:</strong> Tap the + button, add an item with title and description, it should appear in the list below the 3 pre-populated items!
                         </div>
                     </div>
                 </div>
@@ -536,8 +554,9 @@
                         <h3>What to do:</h3>
                         <div class="todo-list">
                             <div class="todo-item">In <code>app/(tabs)/index.tsx</code>, find <code>📚 STEP 3: Add delete functionality</code></div>
-                            <div class="todo-item">Uncomment the STEP 3 section</div>
+                            <div class="todo-item">Look for the commented <code>deleteItem</code> function</div>
                             <div class="todo-item"><strong>🎯 Try implementing <code>deleteItem</code> yourself!</strong> Hint: use <code>.filter()</code></div>
+                            <div class="todo-item">Replace the placeholder <code>deleteItem</code> with your implementation</div>
                             <div class="todo-item">If stuck, uncomment the solution (it's just one line!)</div>
                             <div class="todo-item">In <code>components/bucket-list-item.tsx</code>, find <code>📚 STEP 3</code></div>
                             <div class="todo-item">Uncomment the <code>handleDelete</code> function</div>
@@ -547,7 +566,7 @@
                             <div class="challenge-title">🎯 Challenge - Try it yourself!</div>
                             <p><strong>deleteItem implementation:</strong></p>
                             <p style="margin-top: 8px;">How do you remove an item from an array in React? Use <code>.filter()</code> to keep only items that don't match the id!</p>
-                            <p style="margin-top: 8px;"><code>setItems(items.filter(item => item.id !== id))</code></p>
+                            <p style="margin-top: 8px;"><code>const deleteItem = (id: string) => setItems(items.filter(item => item.id !== id));</code></p>
                             <p style="margin-top: 8px; font-size: 0.9em; opacity: 0.8;">This is EXACTLY the same as React web!</p>
                         </div>
 
@@ -560,7 +579,7 @@
                         </div>
 
                         <div class="checkpoint">
-                            <strong>✅ Check your work:</strong> Tap the trash icon, confirm deletion, item should disappear
+                            <strong>✅ Check your work:</strong> Tap the trash icon on any item, confirm deletion, item should disappear
                         </div>
                     </div>
                 </div>
@@ -572,65 +591,6 @@
                     <input type="checkbox" class="step-checkbox">
                     <div class="step-title">
                         <div class="step-number">4</div>
-                        <div class="step-name">Add Description Field</div>
-                    </div>
-                    <svg class="step-toggle" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                        <polyline points="6 9 12 15 18 9"></polyline>
-                    </svg>
-                </div>
-                <div class="step-content">
-                    <div class="step-body">
-                        <div class="step-goal">
-                            <strong>🎯 Goal:</strong> Make items more detailed with descriptions
-                        </div>
-
-                        <h3>What to do:</h3>
-                        <div class="todo-list">
-                            <div class="todo-item">Good news - the description input already works in <code>AddItemModal</code>!</div>
-                            <div class="todo-item">But descriptions aren't displayed yet - let's add that!</div>
-                            <div class="todo-item">Open <code>components/bucket-list-item.tsx</code>, find <code>📚 STEP 4</code></div>
-                            <div class="todo-item"><strong>🎯 Try adding the description display yourself!</strong></div>
-                            <div class="todo-item">Use conditional rendering: <code>{item.description && <Text>...</Text>}</code></div>
-                            <div class="todo-item">Apply styles: <code>styles.description</code> and <code>styles.completedText</code> when completed</div>
-                            <div class="todo-item">If stuck, uncomment the solution code</div>
-                            <div class="todo-item">Test by adding an item with both title and description</div>
-                        </div>
-
-                        <div class="challenge">
-                            <div class="challenge-title">🎯 Challenge - Add description display!</div>
-                            <p><strong>You already know conditional rendering from React web!</strong></p>
-                            <p style="margin-top: 8px;">Add this below the title:</p>
-                            <ul style="margin-left: 20px; margin-top: 8px;">
-                                <li>Check if <code>item.description</code> exists with <code>&&</code></li>
-                                <li>Render a <code>&lt;ThemedText&gt;</code> with the description</li>
-                                <li>Apply <code>styles.description</code></li>
-                                <li>Also apply <code>styles.completedText</code> when <code>item.completed</code> is true</li>
-                            </ul>
-                            <p style="margin-top: 8px; font-size: 0.9em; opacity: 0.8;">Hint: Use an array for multiple styles: <code>style={[styles.description, item.completed && styles.completedText]}</code></p>
-                        </div>
-
-                        <div class="key-learning">
-                            <div class="key-learning-title">💡 Key Learning</div>
-                            <ul style="margin-left: 20px;">
-                                <li>Conditional rendering (<code>&&</code> operator) works exactly the same as React web!</li>
-                                <li>Style arrays let you apply multiple/conditional styles</li>
-                                <li><code>multiline</code> prop on TextInput creates a textarea-like experience</li>
-                            </ul>
-                        </div>
-
-                        <div class="checkpoint">
-                            <strong>✅ Check your work:</strong> Add an item with a description, you should see both title and description displayed
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Step 5 -->
-            <div class="step" data-step="5">
-                <div class="step-header">
-                    <input type="checkbox" class="step-checkbox">
-                    <div class="step-title">
-                        <div class="step-number">5</div>
                         <div class="step-name">Mark Items as Done/Undone</div>
                     </div>
                     <svg class="step-toggle" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
@@ -645,11 +605,12 @@
 
                         <h3>What to do:</h3>
                         <div class="todo-list">
-                            <div class="todo-item">Open <code>hooks/use-bucket-storage.ts</code>, find <code>📚 STEP 5: Toggle completion status</code></div>
+                            <div class="todo-item">In <code>app/(tabs)/index.tsx</code>, look for the placeholder <code>toggleComplete</code> function</div>
                             <div class="todo-item"><strong>🎯 Try implementing <code>toggleComplete</code> yourself!</strong> Use <code>.map()</code> to update the item</div>
                             <div class="todo-item">When complete: set <code>completed: true</code> and <code>completedAt: new Date().toISOString()</code></div>
                             <div class="todo-item">When incomplete: set <code>completed: false</code> and <code>completedAt: undefined</code></div>
-                            <div class="todo-item">If stuck, uncomment the solution code inside the function</div>
+                            <div class="todo-item">Replace the placeholder function with your implementation</div>
+                            <div class="todo-item">If stuck, look at the solution in the commented STEP 2 section</div>
                         </div>
 
                         <div class="challenge">
@@ -676,18 +637,18 @@
                         </div>
 
                         <div class="checkpoint">
-                            <strong>✅ Check your work:</strong> Mark an item complete - it should show with a checkmark, strikethrough text, and completion date. Tap again to mark as incomplete!
+                            <strong>✅ Check your work:</strong> Tap the checkbox on an item - it should show with a checkmark, strikethrough text, and completion date. Tap again to mark as incomplete!
                         </div>
                     </div>
                 </div>
             </div>
 
-            <!-- Step 6 -->
-            <div class="step" data-step="6">
+            <!-- Step 5 -->
+            <div class="step" data-step="5">
                 <div class="step-header">
                     <input type="checkbox" class="step-checkbox">
                     <div class="step-title">
-                        <div class="step-number">6</div>
+                        <div class="step-number">5</div>
                         <div class="step-name">Save Data with AsyncStorage</div>
                     </div>
                     <svg class="step-toggle" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
@@ -702,13 +663,13 @@
 
                         <h3>What to do:</h3>
                         <div class="todo-list">
-                            <div class="todo-item">Open <code>hooks/use-bucket-storage.ts</code>, find <code>📚 STEP 6</code></div>
+                            <div class="todo-item">Open <code>hooks/use-bucket-storage.ts</code>, find <code>📚 STEP 6</code> (we're skipping to storage now!)</div>
                             <div class="todo-item">Uncomment the <code>useEffect</code> that calls <code>loadItems()</code></div>
                             <div class="todo-item">Uncomment the <code>loadItems</code> function implementation</div>
                             <div class="todo-item">Uncomment the <code>saveItems</code> function implementation</div>
-                            <div class="todo-item">In each CRUD function (<code>addItem</code>, <code>deleteItem</code>, <code>toggleComplete</code>), uncomment the line that calls <code>saveItems()</code></div>
-                            <div class="todo-item">Back in <code>app/(tabs)/index.tsx</code>, comment out STEP 2 (useState and functions)</div>
-                            <div class="todo-item">Uncomment STEP 6 (useBucketStorage hook) - now we're using the hook instead of local state!</div>
+                            <div class="todo-item">In each CRUD function (<code>addItem</code>, <code>deleteItem</code>, <code>toggleComplete</code>), uncomment the implementation</div>
+                            <div class="todo-item">Back in <code>app/(tabs)/index.tsx</code>, comment out your local state implementation</div>
+                            <div class="todo-item">Uncomment the <code>useBucketStorage</code> hook - now we're using persistent storage!</div>
                         </div>
 
                         <div class="challenge">
@@ -722,6 +683,7 @@
                                 <li>AsyncStorage is like localStorage but ASYNCHRONOUS</li>
                                 <li>Must use async/await (unlike localStorage.getItem which is synchronous)</li>
                                 <li>useEffect works exactly the same as React web</li>
+                                <li>Custom hooks encapsulate logic - same pattern as web!</li>
                             </ul>
                         </div>
 
@@ -732,12 +694,12 @@
                 </div>
             </div>
 
-            <!-- Step 7 -->
-            <div class="step" data-step="7">
+            <!-- Step 6 -->
+            <div class="step" data-step="6">
                 <div class="step-header">
                     <input type="checkbox" class="step-checkbox">
                     <div class="step-title">
-                        <div class="step-number">7</div>
+                        <div class="step-number">6</div>
                         <div class="step-name">Get Creative with Styling!</div>
                     </div>
                     <svg class="step-toggle" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">

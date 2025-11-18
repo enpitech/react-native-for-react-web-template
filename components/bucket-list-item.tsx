@@ -3,7 +3,7 @@ import { ThemedText } from './themed-text';
 import { ThemedView } from './themed-view';
 import { IconSymbol } from './ui/icon-symbol';
 import { BucketItem } from '@/types/bucket-item';
-import { useThemeColor } from '@/hooks/use-theme-color';
+import { Colors } from '@/constants/theme';
 
 /**
  * Individual Bucket List Item Component
@@ -32,11 +32,9 @@ export function BucketListItem({
   onToggleComplete,
   onDelete,
 }: BucketListItemProps) {
-  const tintColor = useThemeColor({}, 'tint');
-  const iconColor = useThemeColor({}, 'icon');
 
   /**
-   * 📚 STEP 3: Handle delete with confirmation
+   * 📚 STEP 2: Handle delete with confirmation
    *
    * 🌐 React Web Comparison:
    * - Alert.alert() is like window.confirm() in web
@@ -46,7 +44,6 @@ export function BucketListItem({
     // TODO: Show confirmation dialog before deleting
     // Uncomment the code below if you get stuck:
 
-    /*
     Alert.alert(
       'Delete Item',
       'Are you sure you want to delete this item?',
@@ -55,13 +52,12 @@ export function BucketListItem({
         { text: 'Delete', style: 'destructive', onPress: () => onDelete(item.id) },
       ]
     );
-    */
   };
 
   /**
-   * 📚 STEP 7: Format the completion date nicely
+   * 📚 STEP 6: Format the completion date nicely
    *
-   * 🎯 CHALLENGE: Can you format the date to show "Completed on Jan 15, 2024"?
+   * 🎯 CHALLENGE: Can you format the date to show "Jan 15, 2024"?
    * Hint: Use JavaScript's Date object, same as in React web!
    */
   const formatDate = (isoString: string) => {
@@ -83,7 +79,7 @@ export function BucketListItem({
   return (
     <ThemedView style={styles.container}>
       {/*
-        📚 STEP 5: Checkbox/Toggle Button
+        📚 STEP 4: Checkbox/Toggle Button
 
         🌐 React Web: In web you might use <input type="checkbox">
         🎯 React Native: We use Pressable with custom styling!
@@ -92,7 +88,7 @@ export function BucketListItem({
         onPress={() => onToggleComplete(item.id)}
         style={[
           styles.checkbox,
-          item.completed && { backgroundColor: tintColor },
+          item.completed && { backgroundColor: Colors.tint },
         ]}
       >
         {item.completed && (
@@ -111,8 +107,8 @@ export function BucketListItem({
           {item.title}
         </ThemedText>
 
-        {/* 📚 STEP 4: Show description if it exists */}
-        {/* {item.description && (
+        {/* 📚 STEP 3: Show description if it exists */}
+        {item.description && (
           <ThemedText
             style={[
               styles.description,
@@ -121,7 +117,7 @@ export function BucketListItem({
           >
             {item.description}
           </ThemedText>
-        )} */}
+        )}
 
         {/* Show completion date for completed items */}
         {item.completed && item.completedAt && (
@@ -131,9 +127,9 @@ export function BucketListItem({
         )}
       </View>
 
-      {/* 📚 STEP 3: Delete button */}
+      {/* 📚 STEP 2: Delete button */}
       <Pressable onPress={handleDelete} style={styles.deleteButton}>
-        <IconSymbol name="trash" size={20} color={iconColor} />
+        <IconSymbol name="trash" size={20} color={Colors.icon} />
       </Pressable>
     </ThemedView>
   );

@@ -6,7 +6,7 @@ import { IconSymbol } from '@/components/ui/icon-symbol';
 import { useBucketStorage } from '@/hooks/use-bucket-storage';
 import { BucketListItem } from '@/components/bucket-list-item';
 import { AddItemModal } from '@/components/add-item-modal';
-import { useThemeColor } from '@/hooks/use-theme-color';
+import { Colors } from '@/constants/theme';
 
 /**
  * 🎯 MY BUCKET LIST - Main Tab
@@ -35,36 +35,32 @@ export default function MyBucketListScreen() {
   const [modalVisible, setModalVisible] = useState(false);
 
   // ==========================================
-  // 📚 STEP 1: Start with hardcoded data
+  // 📚 STEP 1: Add new items to the list
   // ==========================================
-  // Uncomment this for Step 1 to see a simple hardcoded list:
-  /*
-  const items = [
-    { id: '1', title: 'Visit Tokyo', completed: false, createdAt: new Date().toISOString() },
-    { id: '2', title: 'Learn to surf', completed: false, createdAt: new Date().toISOString() },
-    { id: '3', title: 'Write a book', completed: false, createdAt: new Date().toISOString() },
-  ];
-  */
+  // We're starting with some pre-populated items so you can see what the app looks like!
+  // Your first task is to ADD NEW ITEMS and see the list update in real-time.
+
+  const [items, setItems] = useState<any[]>([
+    { id: '1', title: 'Visit Tokyo', description: 'Experience cherry blossoms in spring', completed: false, createdAt: new Date().toISOString() },
+    { id: '2', title: 'Learn to surf', description: 'Take lessons in Hawaii or California', completed: false, createdAt: new Date().toISOString() },
+    { id: '3', title: 'Write a book', description: 'Fiction novel about time travel', completed: false, createdAt: new Date().toISOString() },
+  ]);
 
   // ==========================================
-  // 📚 STEP 2: Add items with useState
+  // 📚 STEP 2: Implement the addItem function
   // ==========================================
   // 🎯 CHALLENGE: Try implementing this yourself!
   // You already know this from React web - it's the same useState!
   //
-  // Uncomment the code below to get started:
-  /*
-  const [items, setItems] = useState<any[]>([]);
-
-  const addItem = (title: string, description?: string) => {
-    // 🎯 TODO: Implement adding a new item
+  // Your item needs: id, title, description, completed: false, createdAt
+  // Generate id with: Date.now().toString()
+  // Get current date with: new Date().toISOString()
+  //
+  // Uncomment the solution below if you get stuck:
+  const addItem = (_title: string, _description?: string) => {
+    // TODO: Implement adding a new item
     // Think: How do you add to an array in React? (Hint: spread operator [...items, newItem])
     //
-    // Your item needs: id, title, description, completed: false, createdAt
-    // Generate id with: Date.now().toString()
-    // Get current date with: new Date().toISOString()
-    //
-    // Uncomment the solution below if you get stuck:
     // const newItem = {
     //   id: Date.now().toString(),
     //   title,
@@ -74,81 +70,62 @@ export default function MyBucketListScreen() {
     // };
     // setItems([...items, newItem]);
   };
-  */
- 
+
   // ==========================================
   // 📚 STEP 3: Add delete functionality
   // ==========================================
   // 🎯 CHALLENGE: Implement delete yourself!
   // Hint: Use .filter() to remove an item by id - same as React web!
   //
-  // Uncomment and implement:
-  /*
-  const deleteItem = (id: string) => {
-    // 🎯 TODO: Filter out the item with the given id
-    // Uncomment below if you get stuck:
-    // setItems(items.filter(item => item.id !== id));
-  };
-  */
+  // Replace the placeholder deleteItem below with:
+  // const deleteItem = (id: string) => setItems(items.filter(item => item.id !== id));
 
   // ==========================================
-  // 📚 STEP 5: Add toggle complete functionality
+  // 📚 STEP 4: Add toggle complete functionality
   // ==========================================
   // 🎯 CHALLENGE: Implement toggling completion status!
   // Hint: Use .map() to update a specific item - just like React web!
   //
-  // Uncomment and implement:
+  // Replace the placeholder toggleComplete below with:
   /*
   const toggleComplete = (id: string) => {
-    // 🎯 TODO: Use .map() to update the item with the given id
-    // When marking complete: set completed: true and completedAt: new Date().toISOString()
-    // When marking incomplete: set completed: false and completedAt: undefined
-    //
-    // Uncomment below if you get stuck:
-    // setItems(items.map(item => {
-    //   if (item.id === id) {
-    //     return {
-    //       ...item,
-    //       completed: !item.completed,
-    //       completedAt: !item.completed ? new Date().toISOString() : undefined,
-    //     };
-    //   }
-    //   return item;
-    // }));
+    setItems(items.map(item => {
+      if (item.id === id) {
+        return {
+          ...item,
+          completed: !item.completed,
+          completedAt: !item.completed ? new Date().toISOString() : undefined,
+        };
+      }
+      return item;
+    }));
   };
   */
 
   // ==========================================
-  // 📚 STEP 6: Use AsyncStorage for persistence
+  // 📚 STEP 5: Use AsyncStorage for persistence
   // ==========================================
-  // Uncomment this for Step 6 to save data that survives app restarts:
+  // Uncomment this for Step 5 to save data that survives app restarts:
   /*
   const { items, isLoading, addItem, deleteItem, toggleComplete } = useBucketStorage();
   */
 
-  // TEMPORARY: Empty placeholders - replace these as you complete each step!
-  const items: any[] = [];
+  // TEMPORARY: Empty placeholders for later steps - replace these as you complete each step!
   const isLoading = false;
-  const addItem = (_title: string, _description?: string) => {}; // Implement in STEP 2
   const deleteItem = (_id: string) => {}; // Implement in STEP 3
-  const toggleComplete = (_id: string) => {}; // Implement in STEP 5
-
-  const tintColor = useThemeColor({}, 'tint');
+  const toggleComplete = (_id: string) => {}; // Implement in STEP 4
 
   /**
    * Filter to show only ACTIVE items (not completed)
-   * Completed items will be shown in the "Completed" tab
+   * For now, we're showing all items
    *
-   * 🎯 CHALLENGE: How would you filter an array to show only incomplete items?
-   * Uncomment the code below if you get stuck:
+   * 🚀 BONUS: Want to show only incomplete items?
+   * Try: const activeItems = items.filter(item => !item.completed);
    */
-  // const activeItems = items.filter(item => !item.completed);
-
-  // TEMPORARY: Use all items for now
   const activeItems = items;
 
   /**
-   * 📚 STEP 7: Empty state - What to show when there are no items
+   * Empty state - What to show when there are no items
    *
    * 🌐 React Web: Same pattern as web - conditionally render different UI
    */
@@ -235,7 +212,7 @@ export default function MyBucketListScreen() {
         - Position absolute works the same as CSS!
       */}
       <Pressable
-        style={[styles.addButton, { backgroundColor: tintColor }]}
+        style={[styles.addButton, { backgroundColor: Colors.tint }]}
         onPress={() => setModalVisible(true)}
       >
         <IconSymbol name="plus" size={28} color="white" />
