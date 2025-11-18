@@ -290,6 +290,34 @@
             color: #e65100;
         }
 
+        .complete-step-button {
+            background: #4CAF50;
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 1em;
+            font-weight: 600;
+            margin-top: 20px;
+            display: block;
+            width: 100%;
+            transition: background 0.3s ease;
+        }
+
+        .complete-step-button:hover {
+            background: #45a049;
+        }
+
+        .complete-step-button.completed {
+            background: #9e9e9e;
+            cursor: default;
+        }
+
+        .complete-step-button.completed:hover {
+            background: #9e9e9e;
+        }
+
         code {
             background: #f4f4f4;
             padding: 2px 6px;
@@ -467,6 +495,10 @@
                         <div class="checkpoint">
                             <strong>✅ Check your work:</strong> You should see 3 pre-populated items and understand the basic app structure!
                         </div>
+
+                        <button class="complete-step-button" onclick="markStepComplete(1)">
+                            ✓ Mark Step 1 as Complete
+                        </button>
                     </div>
                 </div>
             </div>
@@ -534,6 +566,10 @@
                         <div class="checkpoint">
                             <strong>✅ Check your work:</strong> Tap the + button, add an item with title and description, it should appear in the list below the 3 pre-populated items!
                         </div>
+
+                        <button class="complete-step-button" onclick="markStepComplete(2)">
+                            ✓ Mark Step 2 as Complete
+                        </button>
                     </div>
                 </div>
             </div>
@@ -594,6 +630,10 @@
                         <div class="checkpoint">
                             <strong>✅ Check your work:</strong> Tap the trash icon on any item, confirm deletion, item should disappear
                         </div>
+
+                        <button class="complete-step-button" onclick="markStepComplete(3)">
+                            ✓ Mark Step 3 as Complete
+                        </button>
                     </div>
                 </div>
             </div>
@@ -662,6 +702,10 @@
                         <div class="checkpoint">
                             <strong>✅ Check your work:</strong> Tap the checkbox on an item - it should show with a filled background, checkmark icon, and strikethrough text. Tap again to mark as incomplete!
                         </div>
+
+                        <button class="complete-step-button" onclick="markStepComplete(4)">
+                            ✓ Mark Step 4 as Complete
+                        </button>
                     </div>
                 </div>
             </div>
@@ -713,6 +757,10 @@
                         <div class="checkpoint">
                             <strong>✅ Check your work:</strong> Add some items, close and restart the app (shake device → "Reload"). Your items should still be there!
                         </div>
+
+                        <button class="complete-step-button" onclick="markStepComplete(5)">
+                            ✓ Mark Step 5 as Complete
+                        </button>
                     </div>
                 </div>
             </div>
@@ -803,11 +851,21 @@
                     const nextIncompleteStep = findNextIncompleteStep();
                     if (nextIncompleteStep) {
                         nextIncompleteStep.classList.add('expanded');
+
+                        // Scroll to next step header after animations complete
+                        // Wait for collapse (300ms) + expand (300ms) + small buffer
+                        setTimeout(() => {
+                            const nextHeader = nextIncompleteStep.querySelector('.step-header');
+                            if (nextHeader) {
+                                nextHeader.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                            }
+                        }, 350); // Wait for animations to finish
                     }
                 } else {
                     step.classList.remove('completed');
                 }
                 updateProgress();
+                updateCompleteButtons();
                 saveProgress();
             });
         });
@@ -824,6 +882,38 @@
             return null;
         }
 
+        // Mark step as complete from button
+        function markStepComplete(stepNumber) {
+            const step = document.querySelector(`.step[data-step="${stepNumber}"]`);
+            if (step) {
+                const checkbox = step.querySelector('.step-checkbox');
+                if (checkbox && !checkbox.checked) {
+                    checkbox.checked = true;
+                    checkbox.dispatchEvent(new Event('change'));
+                }
+            }
+        }
+
+        // Update button states based on completion
+        function updateCompleteButtons() {
+            document.querySelectorAll('.step').forEach(step => {
+                const checkbox = step.querySelector('.step-checkbox');
+                const button = step.querySelector('.complete-step-button');
+                if (checkbox && button) {
+                    if (checkbox.checked) {
+                        button.classList.add('completed');
+                        button.textContent = '✓ Step Completed';
+                        button.disabled = true;
+                    } else {
+                        button.classList.remove('completed');
+                        const stepNum = step.getAttribute('data-step');
+                        button.textContent = `✓ Mark Step ${stepNum} as Complete`;
+                        button.disabled = false;
+                    }
+                }
+            });
+        }
+
         // Reset progress
         function resetProgress() {
             if (confirm('Are you sure you want to reset all progress? This cannot be undone.')) {
@@ -836,6 +926,7 @@
                     step.classList.remove('expanded');
                 });
                 updateProgress();
+                updateCompleteButtons();
 
                 // Expand first step after reset
                 const firstStep = document.querySelector('.step[data-step="1"]');
@@ -848,6 +939,7 @@
         // Initialize on load
         document.addEventListener('DOMContentLoaded', () => {
             loadProgress();
+            updateCompleteButtons();
 
             // Auto-expand first incomplete step
             const firstIncomplete = findNextIncompleteStep();
